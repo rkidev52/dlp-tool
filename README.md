@@ -1,20 +1,9 @@
 # Data Loss Prevention Tool
 
 ## Getting Started
-- Create virtual environment: `virtualenv venv`
-
-- Activate virtual environment: `source venv/bin/activate`
-
-- Install dependencies: `pip install -r requirements.txt`
-
 - Copy .env.example in same directory and rename it as ".env" and write credentials in ".env"
 
-- Migrate DB : `python manage.py migrate`
-
-- Runserver : `python manage.py runserver`
-
-- Navigate to url: `localhost:8000`
-
+- Run `sh run_local.sh`
 
 
 ## Getting Slack's Credentials
@@ -25,7 +14,7 @@
 
 - Copy `VERIFICATION_TOKEN`, `OAUTH_ACCESS_TOKEN`, `BOT_USER_ACCESS_TOKEN`, `CLIENT_ID`, `CLIENT_SECRET` app's      credentials and place them in `.env`
 
-- Use ngrok to construct your webhook url and enter this url in Events Subscription in Slack App
+- Use ngrok to construct your webhook url and enter this url in Events Subscription in Slack App by appending `/event/hook`
 
 
 ## AWS SQS configurations

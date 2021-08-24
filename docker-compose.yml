@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  # Database
+  db:
+    restart: always
+    image: mysql:5.7
+    container_name: nlp-db
+    environment:
+      MYSQL_DATABASE: 'mydatabase'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - "3406:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # App Service
+  nlp-tool:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: nlp-tool:latest
+    container_name: nlp-tool
+    restart: unless-stopped
+    env_file: .env
+
+    volumes:
+      - .:/home/app
+    ports:
+      - 8000:8000
+    command: python ./manage.py runserver 0.0.0.0:8000
+
+volumes:
+  db_data: {}
